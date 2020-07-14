@@ -25,6 +25,9 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
+	testImplementation("org.seleniumhq.selenium:selenium-java")
+	testImplementation("org.seleniumhq.selenium:selenium-support")
+	testImplementation("io.github.bonigarcia:webdrivermanager:4.0.0")
 }
 
 tasks.register<YarnTask>("webClientInstallDependencies") {
