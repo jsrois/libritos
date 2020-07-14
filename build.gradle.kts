@@ -1,8 +1,10 @@
+import com.moowork.gradle.node.yarn.YarnTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	id("org.springframework.boot") version "2.3.1.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
+	id("com.github.node-gradle.node") version "2.2.2"
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
 }
@@ -25,11 +27,33 @@ dependencies {
 	}
 }
 
+tasks.register<YarnTask>("webClientInstallDependencies") {
+	description = "Installs all dependencies from package.json"
+	workingDir = file("${project.projectDir}/web-client")
+	args = listOf("install")
+}
+
+tasks.register<YarnTask>("webClientBuild") {
+	dependsOn("webClientInstallDependencies")
+	description = "builds the frontend bundle"
+	workingDir = file("${project.projectDir}/web-client")
+	args = listOf("webpack")
+}
+
+tasks.register<Copy>("webClientCopy") {
+	dependsOn("webClientBuild")
+	description = "copies the frontend bundle into the resources folder"
+	from("${project.projectDir}/web-client/build")
+	into("${project.projectDir}/src/main/resources/static/.")
+}
+
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
+
 tasks.withType<KotlinCompile> {
+	dependsOn("webClientCopy")
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "1.8"
