@@ -41,7 +41,6 @@ class LibritosPageShould {
     }
 
     @Test
-    @Disabled
     internal fun `allow to add books to the list`() {
         val mainPage = MainPage(webDriver, port)
 
@@ -49,6 +48,6 @@ class LibritosPageShould {
 
         mainPage.addNewBookWith(title="The Communist Manifesto", author="Karl Marx & Friedrich Engels")
 
-        assertThat(mainPage.books(), `is`(listOf("The Communist Manifesto")))
+        assertThat(mainPage.books(), `is`(listOf("The Communist Manifesto by Karl Marx & Friedrich Engels")))
     }
 }

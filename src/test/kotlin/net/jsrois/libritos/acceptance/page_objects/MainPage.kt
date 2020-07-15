@@ -16,12 +16,11 @@ class MainPage(private val driver: WebDriver, port: Int) {
     fun title(): String? = driver.findElement(By.id("page-title")).text
 
     fun books(): List<String> =
-            driver.findElements(By.cssSelector("div.book .book-title")).map { it.text }
+            driver.findElements(By.cssSelector(".book .book__title")).map { it.text }
 
     fun addNewBookWith(title: String, author: String) {
-        driver.findElement(By.cssSelector("div.addBookButton"))
-        driver.findElement(By.cssSelector("input.bookTitle")).sendKeys(title)
-        driver.findElement(By.cssSelector("input.bookAuthor")).sendKeys(author)
-        driver.findElement(By.cssSelector("div.submitNewBook")).click()
+        driver.findElement(By.cssSelector("input.bookTitle")).sendKeys("$title by $author")
+        // driver.findElement(By.cssSelector("input.bookAuthor")).sendKeys(author)
+        driver.findElement(By.cssSelector("input.submitNewBook")).click()
     }
 }
