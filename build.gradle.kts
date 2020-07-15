@@ -36,8 +36,15 @@ tasks.register<YarnTask>("webClientInstallDependencies") {
 	args = listOf("install")
 }
 
-tasks.register<YarnTask>("webClientBuild") {
+tasks.register<YarnTask>("webClientTest") {
 	dependsOn("webClientInstallDependencies")
+	description = "runs the frontend tests"
+	workingDir = file("${project.projectDir}/web-client")
+	args = listOf("test")
+}
+
+tasks.register<YarnTask>("webClientBuild") {
+	dependsOn("webClientTest")
 	description = "builds the frontend bundle"
 	workingDir = file("${project.projectDir}/web-client")
 	args = listOf("webpack")
