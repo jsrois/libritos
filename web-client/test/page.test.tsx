@@ -9,7 +9,7 @@ import {BookRepository} from "../src/repos/BookRepository";
 describe("Libritos page", () => {
     afterEach(cleanup);
     it("should allow to add books", () => {
-        render(<App bookApi={new BookRepository()}/>); // TODO mock
+        render(<App bookRepository={new BookRepository()}/>); // TODO mock
 
         userEvent.type(screen.getByLabelText(/Book Title/), "Women, Race & Class by Angela Y. Davis");
         userEvent.click(screen.getByText(/Add new book/));
@@ -18,7 +18,7 @@ describe("Libritos page", () => {
     });
 
     it("should allow to remove books", () => {
-        render(<App bookApi={new BookRepository()}/>);
+        render(<App bookRepository={new BookRepository()}/>);
 
         addBook("Some book I don't want");
 

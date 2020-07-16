@@ -9,14 +9,19 @@ interface Book {
 
 type BookList = Array<Book>
 
-export const App = (props: {bookApi: BookRepository}): JSX.Element => {
+export const App = (props: {bookRepository: BookRepository}): JSX.Element => {
+
+    const [errors, setErrors] = useState(Array<String>());
 
     const [books, setBooks] = useState(Array<String>());
 
     useEffect(() => {
-        props.bookApi.getAllBooks()
+        props.bookRepository.getAllBooks()
             .then((books: BookList) =>
                 setBooks(books.map(book => book.title))
+            )
+            .catch(
+                () => setErrors([...errors,"Unable to load books"])
             )
     }, [])
 
@@ -38,6 +43,7 @@ export const App = (props: {bookApi: BookRepository}): JSX.Element => {
 
     return (
         <div>
+            { errors.map( error => <div> Error: {error} </div>)}
             <h1 id="page-title">Libritos</h1>
             <div className="book-list">
                 {
