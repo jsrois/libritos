@@ -1,6 +1,6 @@
 import * as React from 'react';
-import axios, {AxiosResponse} from 'axios';
-import {useEffect, useState} from "react";
+import {useEffect, useState} from 'react';
+import {BookRepository} from "../repos/BookRepository";
 
 
 interface Book {
@@ -9,16 +9,16 @@ interface Book {
 
 type BookList = Array<Book>
 
-export const App = (): JSX.Element => {
+export const App = (props: {bookApi: BookRepository}): JSX.Element => {
 
     const [books, setBooks] = useState(Array<String>());
 
     useEffect(() => {
-        axios.get("/books")
-            .then( (response: AxiosResponse<BookList>) =>
-                setBooks(response.data.map( book => book.title ))
+        props.bookApi.getAllBooks()
+            .then((books: BookList) =>
+                setBooks(books.map(book => book.title))
             )
-    },[])
+    }, [])
 
     const [newBookTitle, setNewBookTitle] = useState("");
 

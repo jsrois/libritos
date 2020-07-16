@@ -1,5 +1,6 @@
 import * as ReactDOM from "react-dom";
 import * as React from "react";
-import {App} from "./components/render";
+import {App} from "./components/libritos";
+import {BookRepository} from "./repos/BookRepository";
 
-ReactDOM.render(<App/>, document.getElementById("app"));
+ReactDOM.render(<App bookApi={new BookRepository()}/>, document.getElementById("app"));

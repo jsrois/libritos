@@ -1,14 +1,15 @@
 import {cleanup, render, screen, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import {App} from "../src/components/render";
+import {App} from "../src/components/libritos";
 import '@testing-library/jest-dom/extend-expect';
 import * as React from "react";
+import {BookRepository} from "../src/repos/BookRepository";
 
 
 describe("Libritos page", () => {
     afterEach(cleanup);
     it("should allow to add books", () => {
-        render(<App/>);
+        render(<App bookApi={new BookRepository()}/>); // TODO mock
 
         userEvent.type(screen.getByLabelText(/Book Title/), "Women, Race & Class by Angela Y. Davis");
         userEvent.click(screen.getByText(/Add new book/));
@@ -17,7 +18,7 @@ describe("Libritos page", () => {
     });
 
     it("should allow to remove books", () => {
-        render(<App/>);
+        render(<App bookApi={new BookRepository()}/>);
 
         addBook("Some book I don't want");
 
