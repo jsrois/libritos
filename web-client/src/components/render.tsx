@@ -1,13 +1,24 @@
 import * as React from 'react';
+import axios, {AxiosResponse} from 'axios';
 import {useEffect, useState} from "react";
+
+
+interface Book {
+    title: string;
+}
+
+type BookList = Array<Book>
 
 export const App = (): JSX.Element => {
 
     const [books, setBooks] = useState(Array<String>());
 
     useEffect(() => {
-        axios.get("/get").then( (response) => console.log(response.body))
-    })
+        axios.get("/books")
+            .then( (response: AxiosResponse<BookList>) =>
+                setBooks(response.data.map( book => book.title ))
+            )
+    },[])
 
     const [newBookTitle, setNewBookTitle] = useState("");
 
