@@ -1,10 +1,13 @@
 import * as React from 'react';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export const App = (): JSX.Element => {
 
-
     const [books, setBooks] = useState(Array<String>());
+
+    useEffect(() => {
+        axios.get("/get").then( (response) => console.log(response.body))
+    })
 
     const [newBookTitle, setNewBookTitle] = useState("");
 
