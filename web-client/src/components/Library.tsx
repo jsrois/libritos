@@ -1,17 +1,6 @@
 import * as React from "react";
-import {useContext, useEffect, useState} from "react";
-
-class Book {
-    private readonly _title: string;
-    private readonly _author: string;
-
-    constructor(title: string, author: string) {
-        this._title = title;
-        this._author = author;
-    }
-
-    asString =  (): string => `${this._title} by ${this._author}`;
-}
+import {useEffect, useState} from "react";
+import {Book} from "./Book";
 
 const phonyApi = {
     getBooks: (): Promise<Array<Book>> => Promise.resolve([

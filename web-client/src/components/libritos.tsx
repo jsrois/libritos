@@ -4,6 +4,8 @@ import {Library} from "./Library";
 import {Login} from "./Login";
 import {useState} from "react";
 import {NavigationMenu} from "./NavigationMenu";
+import {NewBookForm} from "./NewBookForm";
+import {Book} from "./Book";
 
 export const App = (): JSX.Element => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -15,6 +17,9 @@ export const App = (): JSX.Element => {
                 <Route exact path="/" component={Library}/>
                 <Route path="/login">
                     <Login required={!loggedIn} onCompleteLogin={ () => setLoggedIn(true) }></Login>
+                </Route>
+                <Route path="/new" >
+                    <NewBookForm addBook={(book: Book) => console.log(`Added new Book ${book}`)} />
                 </Route>
             </Switch>
         </Router>
