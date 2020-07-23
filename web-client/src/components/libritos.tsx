@@ -10,7 +10,7 @@ export const App = (): JSX.Element => {
     return <div>
         <Router>
             <nav className="topNavigationMenu">
-                <Link to="/" className="topNavigationMenu__link--active">Libritos</Link>
+                <Link to="/" className="topNavigationMenu__link topNavigationMenu__link--active">Libritos</Link>
                 {loggedIn || <Link to="/login" className="topNavigationMenu__link">Login</Link>}
                 {loggedIn && <Link to="/" className="topNavigationMenu__link">Add book</Link>}
             </nav>
