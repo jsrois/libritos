@@ -46,6 +46,9 @@ class LibritosPageShould {
 
         mainPage.visit()
 
+        mainPage.login("some-user", "some-password")
+
+
         mainPage.addNewBookWith(title="The Communist Manifesto", author="Karl Marx & Friedrich Engels")
 
         assertThat(mainPage.books(), `is`(listOf("The Communist Manifesto by Karl Marx & Friedrich Engels")))

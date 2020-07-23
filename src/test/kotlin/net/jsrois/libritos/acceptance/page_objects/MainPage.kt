@@ -19,8 +19,16 @@ class MainPage(private val driver: WebDriver, port: Int) {
             driver.findElements(By.cssSelector(".book .book__title")).map { it.text }
 
     fun addNewBookWith(title: String, author: String) {
-        driver.findElement(By.cssSelector("input.bookTitle")).sendKeys("$title by $author")
-        // driver.findElement(By.cssSelector("input.bookAuthor")).sendKeys(author)
+        driver.findElement(By.linkText("Add book")).click()
+        driver.findElement(By.cssSelector("input.bookTitle")).sendKeys(title)
+        driver.findElement(By.cssSelector("input.bookAuthor")).sendKeys(author)
         driver.findElement(By.cssSelector("input.submitNewBook")).click()
+    }
+
+    fun login(userName: String, password: String) {
+        driver.findElement(By.linkText("Login")).click()
+        driver.findElement(By.id("user-name")).sendKeys(userName)
+        driver.findElement(By.id("user-password")).sendKeys(password)
+        driver.findElement(By.linkText("Login")).click()
     }
 }
