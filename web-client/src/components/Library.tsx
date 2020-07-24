@@ -1,24 +1,15 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
-import {Book} from "./Book";
+import {Book} from "../repository/Book";
 
-const phonyApi = {
-    getBooks: (): Promise<Array<Book>> => Promise.resolve([
-        new Book("Das Kapital", "Karl Marx"),
-        new Book("Women, Race & Class", "Angela Y.Davis")]
-    )
-}
 
-export const Library = (): JSX.Element => {
-    const [books, setBooks] = useState(Array<Book>())
-
-    useEffect( () => {
-        phonyApi.getBooks().then(books => setBooks(books))
-    }, [])
+export const Library = (props: {books: Array<Book>}): JSX.Element => {
 
     return <section>
         <ul>
-            { books.map( (book,i) => <li key={i}>{book.asString()}</li>)}
+            { props.books.map( (book: Book, i: number) => {
+                console.log(`rendering book ${book.title} ${book.author}`)
+                return <li key={i}>{book.title} by {book.author}</li>;
+            })}
         </ul>
     </section>
 };

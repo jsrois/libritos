@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Book} from "./Book";
+import {Book} from "../repository/Book";
 import {useInput} from "../hooks/useInput";
 import {useState} from "react";
 import {Redirect} from "react-router";
@@ -12,7 +12,7 @@ export const NewBookForm = (props: { addBook: (book: Book) => void }) => {
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        props.addBook(new Book(title, author));
+        props.addBook({title, author});
         setRedirect(true);
     };
 

@@ -20,9 +20,8 @@ class BookControllerShould {
                     status { isOk }
                     content { contentType(MediaType.APPLICATION_JSON) }
                     content {
-                        json("""[{"title":"The Communist Manifesto by Karl Marx and Friedrich Engels"}]""".trimMargin())
+                        json("""[{"title":"The Communist Manifesto", "author": "Karl Marx and Friedrich Engels"}]""".trimMargin())
                     }
                 }
-
     }
 }

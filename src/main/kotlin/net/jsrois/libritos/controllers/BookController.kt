@@ -1,13 +1,23 @@
 package net.jsrois.libritos.controllers
 
+import net.jsrois.libritos.book.Book
+import net.jsrois.libritos.book.BookRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-
-data class Book(val title: String)
 
 @RestController
 class BookController {
+
+    @Autowired
+    lateinit var bookRepository : BookRepository
+
     @GetMapping("/books")
-    fun allBooks() = listOf(Book("The Communist Manifesto by Karl Marx and Friedrich Engels"))
+    fun allBooks(): List<Book> = bookRepository.findAll()
+
+    @PostMapping("/books")
+    fun addBook(@RequestBody book: Book) = bookRepository.add(book)
 }
 
