@@ -7,11 +7,12 @@ import {Redirect} from "react-router";
 export const NewBookForm = (props: { addBook: (book: Book) => void }) => {
     const {value: title, bind: bindTitle} = useInput("");
     const {value: author, bind: bindAuthor} = useInput("");
+    const [alreadyRead, setAlreadyRead] = useState(true);
     const [redirect, setRedirect] = useState(false);
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        props.addBook({title, author});
+        props.addBook({title, author, alreadyRead});
         setRedirect(true);
     };
 
@@ -31,7 +32,8 @@ export const NewBookForm = (props: { addBook: (book: Book) => void }) => {
         <label className="Form__label" htmlFor="new-book-author">Book Author</label>
         <input className="Form__textBox" id="new-book-author" type="text" {...bindAuthor}/>
         <div className="Form__check">
-            <input type="checkbox"/>
+            <input type="checkbox" checked={alreadyRead}
+                   onChange={ e => setAlreadyRead(e.target.checked)}/>
             <label htmlFor="new-book-read">Already Read</label>
         </div>
         <input disabled={disabled} className="Form__submitButton" type="submit" value="Add Book"/>
