@@ -11,7 +11,10 @@ export const Library = (props: { books: Array<Book> }): JSX.Element => {
                     <div className="BookItem__cover">
                         <picture>
                             <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Black_open_book.png" />
+                                src={book.imageUrl && book.imageUrl != "" ?
+                                    book.imageUrl :
+                                    "https://upload.wikimedia.org/wikipedia/commons/1/1f/Black_open_book.png"
+                                } />
                         </picture>
                     </div>
                     <div className="BookItem__title">{book.title}</div>
