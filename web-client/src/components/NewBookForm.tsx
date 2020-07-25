@@ -3,6 +3,7 @@ import {Book} from "../repository/Book";
 import {useInput} from "../hooks/useInput";
 import {useState} from "react";
 import {Redirect} from "react-router";
+import "../styles/form.scss";
 
 export const NewBookForm = (props: { addBook: (book: Book) => void }) => {
 
@@ -20,11 +21,16 @@ export const NewBookForm = (props: { addBook: (book: Book) => void }) => {
         return <Redirect to="/"/>
     }
 
-    return <form onSubmit={onSubmit}>
-        <label htmlFor="new-book-name">Book Name</label>
-        <input id="new-book-name" type="text" {...bindTitle} />
-        <label htmlFor="new-book-author">Book Author</label>
-        <input id="new-book-author" type="text" {...bindAuthor}/>
-        <input type="submit"/>
+    return <form className="Form" onSubmit={onSubmit}>
+        <label className="Form__label" htmlFor="new-book-name">Book Name</label>
+        <input className="Form__textBox" id="new-book-name" type="text" {...bindTitle} />
+        <label className="Form__label" htmlFor="new-book-author">Book Author</label>
+        <input className="Form__textBox" id="new-book-author" type="text" {...bindAuthor}/>
+        <div className="Form__check">
+            <input type="checkbox"/>
+            <label htmlFor="new-book-read">Already Read</label>
+        </div>
+        <input className="Form__submitButton" type="submit" value="Add Book"/>
+
     </form>;
 }
