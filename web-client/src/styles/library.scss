@@ -1,0 +1,30 @@
+.BookList {
+  display: flex;
+  flex-wrap: wrap;
+
+  .BookItem {
+    width: 200px;
+    border: 1px solid gray;
+    border-radius: 3px;
+    margin: 30px;
+
+    &__cover {
+      height: 180px;
+      background-color: #00620031;
+    }
+
+    &__title {
+      font-size: 12px;
+      line-height: 2em;
+      text-align: center;
+    }
+
+    &__author {
+      font-size: 10px;
+      line-height: 2em;
+      text-align: center;
+      background-color: lightgray;
+    }
+  }
+
+}

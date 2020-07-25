@@ -3,7 +3,6 @@ import {Book} from "../repository/Book";
 import {useInput} from "../hooks/useInput";
 import {useState} from "react";
 import {Redirect} from "react-router";
-import "../styles/form.scss";
 
 export const NewBookForm = (props: { addBook: (book: Book) => void }) => {
 

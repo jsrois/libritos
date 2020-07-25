@@ -5,11 +5,15 @@ import {Book} from "../repository/Book";
 export const Library = (props: {books: Array<Book>}): JSX.Element => {
 
     return <section>
-        <ul>
+        <div className="BookList">
             { props.books.map( (book: Book, i: number) => {
                 console.log(`rendering book ${book.title} ${book.author}`)
-                return <li key={i}>{book.title} by {book.author}</li>;
+                return <div className="BookItem">
+                    <div className="BookItem__cover"></div>
+                    <div className="BookItem__title">{book.title}</div>
+                    <div className="BookItem__author">{book.author}</div>
+                </div>;
             })}
-        </ul>
+        </div>
     </section>
 };

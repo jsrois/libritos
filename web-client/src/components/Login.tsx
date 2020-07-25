@@ -1,6 +1,5 @@
 import * as React from "react";
 import {Redirect} from "react-router";
-import "../styles/form.scss"
 
 export const Login = (props: { required: boolean, onCompleteLogin: () => void }): JSX.Element => {
         const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
