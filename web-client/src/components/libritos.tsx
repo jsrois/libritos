@@ -6,20 +6,9 @@ import {Login} from "./Login";
 import {NavigationMenu} from "./NavigationMenu";
 import {NewBookForm} from "./NewBookForm";
 import {Book} from "../repository/Book";
-import axios, {AxiosError} from 'axios';
+import {BookRepository} from "../repository/BookRepository";
+import {AuthenticationService} from "../authentication/AuthenticationService";
 
-const phonyApi = {
-    getBooks: (): Promise<Array<Book>> => axios.get<Array<Book>>("/books")
-        .then(response =>
-            response.data
-        ).catch((error: AxiosError) => {
-            throw error;
-        }),
-
-    addBook: (book:Book) => {
-        return axios.post<Book>("/books", book)
-    }
-}
 
 export const App = (): JSX.Element => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -30,7 +19,7 @@ export const App = (): JSX.Element => {
         if (updateRequired) {
             setUpdateRequired(false);
             const updateBooksFromApi = async () => {
-                const books: Array<Book> = await phonyApi.getBooks();
+                const books: Array<Book> = await BookRepository.getBooks();
                 setBooks(books)
             };
             updateBooksFromApi();
@@ -39,8 +28,16 @@ export const App = (): JSX.Element => {
 
 
     const addNewBook = async (book: Book) => {
-        await phonyApi.addBook(book)
+        await BookRepository.addBook(book)
         setUpdateRequired(true);
+    };
+
+    const authenticate = async (user: string, password: string) => {
+        if (await AuthenticationService.authenticate(user, password)) {
+            setLoggedIn(true);
+        } else {
+            console.log(`Unable to authenticate user [${user}].`);
+        }
     };
 
 
@@ -52,7 +49,7 @@ export const App = (): JSX.Element => {
                     <Library books={books}/>
                 </Route>
                 <Route path="/login">
-                    <Login required={!loggedIn} onCompleteLogin={() => setLoggedIn(true)}></Login>
+                    <Login required={!loggedIn} onCompleteLogin={authenticate}></Login>
                 </Route>
                 <Route path="/new">
                     <NewBookForm addBook={addNewBook}/>
