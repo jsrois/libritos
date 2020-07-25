@@ -7,6 +7,11 @@
     border: 1px solid gray;
     border-radius: 3px;
     margin: 30px;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 1px 1px;
+    }
 
     &__cover {
       height: 180px;
