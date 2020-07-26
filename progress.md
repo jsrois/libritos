@@ -1,58 +1,55 @@
-Libritos
 
-Basic
-
-[ ] Set basic gradle SpringBoot project
-	[x] Include webpack step
-	[x] Include React
-	[x] SCSS
-	[ ] Deployment: AWS and domain
+- [ ] Set basic gradle SpringBoot project
+	- [x] Include webpack step
+	- [x] Include React
+	- [x] SCSS
+	- [ ] Deployment: AWS and domain
 	
-[ ] Webpack reloads while gradle is running?
+-[ ] Webpack reloads while gradle is running?
 	
-[ ] Styling
-	[x] Book items in library
-	[x] Forms
+-[ ] Styling
+	-[x] Book items in library
+	-[x] Forms
 
-[x] Form Validation!
+-[x] Form Validation!
 
-[ ] Authentication: Real login
+-[ ] Authentication: Real login
 
-[x] Books are updated in backend
-	[x] Create repository in backend (in memory)
+-[x] Books are updated in backend
+	-[x] Create repository in backend (in memory)
 
-[ ] Images
-	[ ] Add optional image url field (creation)
+-[ ] Images
+	-[ ] Add optional image url field (creation)
 	
 
-[ ] Styled components
+-[ ] Styled components
 
-[ ] Persistence
+-[ ] Persistence
 
-[ ] Responsiveness
+-[ ] Responsiveness
 
-[ ] Book Page
+-[ ] Book Page
 
-[ ] Read/Unread
-	[ ] When adding a book, I can select read-unread
-	[x] When showing books, different colors for read-unread
+-[ ] Read/Unread
+	-[ ] When adding a book, I can select read-unread
+	-[x] When showing books, different colors for read-unread
 	
-[ ] Search by Author
+-[ ] Search by Author
 
-[ ] Separate books by year in library view
+-[ ] Separate books by year in library view
 
-[ ] Store dates in books
+-[ ] Store dates in books
 	- Added date
 	- Read date
 	
-[ ] Sticky top bar
+-[ ] Sticky top bar
 
 
 - Ideas
 
-[ ] Load info from some ISBN database?
-[ ] Homepage: blur on load
-[ ] Timeline for read books
+-[ ] Load info from some ISBN database?
+-[ ] Homepage: blur on load
+-[ ] Timeline for read books
 
 Gradle + Kotlin + Yarn
 * https://dev.to/darkes/using-gradle-s-kotlin-dsl-to-bundle-react-with-a-spring-boot-web-application-355k
